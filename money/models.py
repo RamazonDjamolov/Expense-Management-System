@@ -23,9 +23,13 @@ class Income(models.Model):
     is_deleted = models.BooleanField(default=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
+
     class Meta:
         db_table = 'income'
 
+    def __str__(self):
+        return str(self.amount)
 
 class Expense(models.Model):
     amount = models.DecimalField(decimal_places=2, max_digits=100)

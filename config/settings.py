@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # exetensions
+    'shell_plus',
+    'django_extensions',
     #      my apps
     'money',
 
