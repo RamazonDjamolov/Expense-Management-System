@@ -1,0 +1,25 @@
+{% include 'base.html' %}
+
+
+{% block content %}
+    <div class="pt-5">
+        <ol>
+            {% for income in incomes %}
+                <li>
+                    <p>
+                        amount: {{ income.amount }} , category: {{ income.category }} ,
+                        description: {{ income.description }},
+                        created at: {{ income.created_at }}
+
+
+                    </p>
+                </li>
+            {% endfor %}
+
+
+        </ol>
+
+
+        {% include 'paginations.html' with page=incomes %}
+    </div>
+{% endblock %}
