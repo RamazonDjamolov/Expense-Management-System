@@ -38,3 +38,7 @@ class Expense(models.Model):
     created_at = models.DateField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return str(self.amount) + ": category - > " + str(self.category)

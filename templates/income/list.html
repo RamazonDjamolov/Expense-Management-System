@@ -10,11 +10,14 @@
                         amount: {{ income.amount }} , category: {{ income.category }} ,
                         description: {{ income.description }},
                         created at: {{ income.created_at }}
+                        action: <a href="{% url 'money:income_update' income.id %}" class="btn btn-warning"> edit</a>
 
 
                     </p>
                 </li>
             {% endfor %}
+
+            <a href="{% url 'money:income_create' %}" class="btn btn-primary"> create</a>
 
 
         </ol>

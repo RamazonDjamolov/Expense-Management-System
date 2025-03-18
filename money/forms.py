@@ -1,0 +1,19 @@
+from django import forms
+from django.core.exceptions import ValidationError
+
+from money.models import Income
+
+
+class IncomeCreateForm(forms.ModelForm):
+    class Meta:
+        model = Income
+        fields = ['amount', 'category', 'description']
+        widgets = {
+            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
+    def clean(self):
+        if 0 >= self.cleaned_data['amount']:
+            raise ValidationError('0 dan katta qiymat kiritng ')

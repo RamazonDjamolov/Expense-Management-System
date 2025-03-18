@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from .forms import IncomeCreateForm
 from .models import Income
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -15,7 +17,7 @@ def income_list_view(request):
         incomes = Income.objects.filter(
             Q(amount__icontains=q) | Q(category__name__icontains=q) & Q(user_id=request.user.id))
 
-    paginator = Paginator(incomes, 3)
+    paginator = Paginator(incomes, 5)
     page = request.GET.get('page')
     incomes = paginator.get_page(page)
 
@@ -23,4 +25,42 @@ def income_list_view(request):
         'incomes': incomes,
         'q': q
 
+    })
+
+
+def income_create_view(request):
+    if request.method == "POST":
+        form = IncomeCreateForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            Income.objects.create(amount=form.cleaned_data['amount'], category=form.cleaned_data['category'],
+                                  description=form.cleaned_data['description'], user_id=request.user)
+            return redirect('money:income_list')
+        return render(request, template_name='income/create.html', context={
+            'form': form,
+        })
+    form = IncomeCreateForm()
+    return render(request, template_name='income/create.html', context={
+        'form': form,
+    })
+
+
+def Income_update(request, income_id):
+    if request.method == "POST":
+        income = Income.objects.get(id=income_id)
+        form = IncomeCreateForm(request.POST, instance=income)
+        print(form.is_valid(), "my validatsiya")
+        if form.is_valid():
+            form.save()
+            return redirect('money:income_list')
+        return render(request, template_name='income/edit.html', context={
+            'form': form,
+            'income': income,
+        })
+
+    income = Income.objects.get(id=income_id)
+    form = IncomeCreateForm(instance=income)
+    return render(request, template_name='income/edit.html', context={
+        'form': form,
+        'income': income,
     })

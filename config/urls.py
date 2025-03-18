@@ -18,11 +18,11 @@ from xml.etree.ElementInclude import include
 
 from django.contrib import admin
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.urls import path, include
 
 
-def default_view(request):
-    return HttpResponse(" xush kelibsiz ")
+
 
 
 urlpatterns = [
