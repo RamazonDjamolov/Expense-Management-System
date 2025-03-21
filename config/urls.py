@@ -16,17 +16,17 @@ Including another URLconf
 """
 from xml.etree.ElementInclude import include
 
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import path, include
 
-
-
-
-
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
+    path('accounts/', include('account.urls')),
+    path('rosetta/', include('rosetta.urls')),
+    path('i18/', include('django.conf.urls.i18n')),
     path('', include('money.urls')),
 
-]
+)

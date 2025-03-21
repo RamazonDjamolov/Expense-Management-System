@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +18,22 @@
 {#navbar#}
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <form action="{% url 'set_language' %}" method="post" class="p-3 bg-white rounded shadow">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="language" class="form-label">Tilni tanlang:</label>
+                <select name="language" id="language" class="form-select">
+                    <option value="en">English</option>
+                    <option value="uz">Uzbek</option>
+                    <option value="ru">Russian  </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Tilni o'zgartirish</button>
+        </form>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#"> {% trans 'home' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
@@ -58,7 +66,7 @@
                         {% endif %}
 
                        aria-label="Search" name="q">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-success" type="submit">{% trans 'Search' %}</button>
             </form>
         </div>
     </div>
@@ -68,6 +76,10 @@
 
 {% block content %}
 
+    <p>salom  </p>
+{#    <p>{%  get_current_language as Curent_L%}</p>#}
+{#    <p>{% get_language_info %}</p>#}
+{#    <p>{{ request.headers.content_language}}</p>#}
 {% endblock %}
 
 
