@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^)&gm-mk)m4ydys@v6$%_#@tob$%0a42^t=kt216z7fmt1b+98'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'rosetta',
     #      my apps
     'money',
+    'account',
 
 ]
 
@@ -133,6 +135,13 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
+# setting file
+
+
+MEDIA_URL = 'media/'
+
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
@@ -140,8 +149,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-GOOGLE_CLIENT_ID = "841125617894-mrbuc382lfbh7a78b72bq6nn0qom6sj1.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "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"
-GOOGLE_OAUTH2_PROJECT_ID = "web-aplications-454312"
+# customer user
+AUTH_USER_MODEL = 'account.User'
 
-GOOGLE_REDIRECT_URI = "http://127.0.0.1:8000/accounts/google/callback/"
+# google settings
+
+GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = config('GOOGLE_CLIENT_SECRET')
+GOOGLE_REDIRECT_URI = config('GOOGLE_REDIRECT_URI')
+GOOGLE_AUTH_URL = config('GOOGLE_AUTH_URL')
+GOOGLE_USER_INFO_URL = config('GOOGLE_USER_INFO_URL')
+GOOGLE_TOKEN_URL = config('GOOGLE_TOKEN_URL')
