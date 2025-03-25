@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import path
-from .views import income_list_view, income_create_view, Income_update
+from .views import income_list_view, income_create_view, Income_update, create_expense
 
 app_name = 'money'
 
@@ -14,5 +14,6 @@ urlpatterns = [
     path("income_list/", income_list_view, name="income_list"),
     path("income_create/", income_create_view, name="income_create"),
     path('income_edit/<int:income_id>/', Income_update, name='income_update'),
+    path('expense_create', create_expense, name='expense_create'),
 
 ]

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container mt-5">
+        <!-- Xarajat qo'shish formasi -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Yangi Xarajat Qo'shish</h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <!-- Miqdor -->
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Miqdor (so'm)</label>
+                        <input
+                                type="number"
+                                class="form-control"
+                                id="amount"
+                                name="amount"
+                                step="0.01"
+                                required
+                        >
+                    </div>
+
+                    <!-- Kategoriya -->
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Kategoriya</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="">-- Tanlang --</option>
+                            <option value="1">Oziq-ovqat</option>
+                            <option value="2">Transport</option>
+                            <option value="3">Kommunal</option>
+                        </select>
+                    </div>
+
+                    <!-- Tavsif -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Tavsif</label>
+                        <textarea
+                                class="form-control"
+                                id="description"
+                                name="description"
+                                rows="2"
+                        ></textarea>
+                    </div>
+
+                    <!-- Sana -->
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Sana</label>
+                        <input
+                                type="date"
+                                class="form-control"
+                                id="date"
+                                name="created_at"
+                                required
+                        >
+                    </div>
+
+                    <!-- Holat -->
+                    <div class="mb-3 form-check">
+                        <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="is_deleted"
+                                name="is_deleted"
+                        >
+                        <label class="form-check-label" for="is_deleted">O'chirish</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Xarajatlar ro'yxati -->
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Xarajatlar Tarixi</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Miqdor</th>
+                        <th>Kategoriya</th>
+                        <th>Tavsif</th>
+                        <th>Sana</th>
+                        <th>Holat</th>
+                        <th>Harakatlar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Misol ma'lumotlar -->
+                    <tr>
+                        <td>150,000 so'm</td>
+                        <td>Oziq-ovqat</td>
+                        <td>Oshxona mahsulotlari</td>
+                        <td>2024-03-15</td>
+                        <td><span class="badge bg-success">Faol</span></td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-warning">Tahrirlash</a>
+                            <a href="#" class="btn btn-sm btn-danger">O'chirish</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>75,000 so'm</td>
+                        <td>Transport</td>
+                        <td>Yoqilg'i</td>
+                        <td>2024-03-14</td>
+                        <td><span class="badge bg-danger">O'chirilgan</span></td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-warning">Tahrirlash</a>
+                            <a href="#" class="btn btn-sm btn-danger">O'chirish</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
