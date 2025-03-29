@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.urls import path
-from .views import google_login, google_callback, sign_in
+from .views import google_login, google_callback, signup, login_view
 
 app_name = 'account'
 
 urlpatterns = [
-    path('sign_in/', sign_in, name='sign_in'),
+    path('sign_in/', signup, name='sign_in'),
+    path('login/', login_view, name='login'),
     path('google_login/', google_login, name='google_login'),
     path('google/callback/', google_callback, name='google_callback'),
 

@@ -1,7 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.sites import requests
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 
 from account.models import User
 from config.settings import GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI, GOOGLE_AUTH_URL, GOOGLE_CLIENT_SECRET, \
@@ -9,8 +8,6 @@ from config.settings import GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI, GOOGLE_AUTH_U
 import requests
 
 
-def sign_in(request):
-    return render(request, template_name='accounts/sign_in.html')
 
 
 # Create your views here.

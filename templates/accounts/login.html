@@ -11,8 +11,8 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h3 class="card-title text-center mb-4">Sign In</h3>
-                        <form method="post" action="{% url 'account:sign_in' %}">
+                        <h3 class="card-title text-center mb-4">Login </h3>
+                        <form method="post" action="{% url 'account:login' %}">
                             {% csrf_token %}
 
                             {{ form }}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import path
-from .views import income_list_view, income_create_view, Income_update, create_expense
+from .views import income_list_view, income_create_view, Income_update, create_expense, list_expenses, CategoryCreate, \
+    Income_delete
 
 app_name = 'money'
 
@@ -10,10 +11,15 @@ def default_view(request):
 
 
 urlpatterns = [
-    path('', default_view, name='default_view'),
-    path("income_list/", income_list_view, name="income_list"),
+    path("", income_list_view, name="income_list"),
     path("income_create/", income_create_view, name="income_create"),
     path('income_edit/<int:income_id>/', Income_update, name='income_update'),
-    path('expense_create', create_expense, name='expense_create'),
+    path("income_delete/<int:income_id>/", Income_delete, name="income_delete"),
+    # expense
+    path('expense_create/', create_expense, name='expense_create'),
+    path('expense_list/', list_expenses, name='expense_list'),
+
+    #     category
+    path('category_create/', CategoryCreate, name='category_create'),
 
 ]

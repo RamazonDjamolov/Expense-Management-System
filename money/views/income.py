@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from money.forms import IncomeCreateForm
@@ -8,7 +9,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
-
+@login_required(login_url='account:login')
 def income_list_view(request):
     incomes = Income.objects.all().filter(user_id=request.user.id)
     q = request.GET.get('q', "")
@@ -64,3 +65,8 @@ def Income_update(request, income_id):
         'form': form,
         'income': income,
     })
+
+
+def Income_delete(request, income_id):
+    income = Income.objects.get(id=income_id).delete()
+    return redirect('money:income_list')

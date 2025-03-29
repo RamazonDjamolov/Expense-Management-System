@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-
-
 {% block content %}
     <div class="container mt-5">
         <!-- Xarajat qo'shish formasi -->
@@ -13,18 +11,14 @@
             <div class="card-body">
 
 
-                <form action="{% url 'money:expense_create' %}" method="post">
-
+                <form action="{% url 'money:category_create' %}" method="post">
                     {% csrf_token %}
 
-                      {{ form }}
-
+                    {{ form.as_p }}
 
 
                     <button type="submit" class="btn btn-primary mt-3">Saqlash</button>
                 </form>
-
-
 
 
             </div>
@@ -39,5 +33,3 @@
 
 
 {% endblock %}
-
-
