@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 {% load i18n %}
-
-
-
+{% block title %}
+	edit category
+{% endblock %}
 {% block content %}
-    <div class="container mt-5">
+	    <div class="container mt-5">
         <!-- Xarajat qo'shish formasi -->
-        <div class="card mb-4">
+        <div class="card">
             <div class="card-header bg-primary text-white">
-                <h5 class="mb-0"> {% trans 'Create New Expenses ' %} </h5>
+                <h5 class="mb-0"> {% trans 'Edit Category ' %} </h5>
             </div>
             <div class="card-body">
 
 
-                <form action="{% url 'money:expense_create' %}" method="post">
-
+                <form action="{% url 'money:category_edit' category.id %}" method="post">
                     {% csrf_token %}
 
-                    {{ form }}
+                    {{ form.as_p }}
 
 
                     <button type="submit" class="btn btn-primary mt-3">Saqlash</button>
@@ -25,7 +24,15 @@
 
 
             </div>
+
+
         </div>
+
+        <div>
+
+
+        </div>
+
 
     </div>
 

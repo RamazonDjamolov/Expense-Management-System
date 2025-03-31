@@ -51,7 +51,6 @@ def Income_update(request, income_id):
     if request.method == "POST":
         income = Income.objects.get(id=income_id)
         form = IncomeCreateForm(request.POST, instance=income)
-        print(form.is_valid(), "my validatsiya")
         if form.is_valid():
             form.save()
             return redirect('money:income_list')

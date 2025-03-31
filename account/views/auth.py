@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from account.forms import LoginForm, RegisterForm
 from account.models import User
 
+
 # my sign in
 def signup(request):
     form = RegisterForm()
@@ -30,14 +31,18 @@ def login_view(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = User.objects.filter(username=username).first()
+
             if user and user.check_password(password):
                 login(request, user)
+
                 return redirect('money:income_list')
-            form.add_error(None, 'Parol yoki username noto\'g\'ri !')
+            form.add_error(None, 'Username or password is incorrect')
+
             return render(request, 'accounts/login.html', context={'form': form})
 
     form = LoginForm()
     return render(request, 'accounts/login.html', context={'form': form})
+
 
 #  logout
 def logout_view(request):
