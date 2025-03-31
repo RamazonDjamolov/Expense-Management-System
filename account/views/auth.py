@@ -1,8 +1,9 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from account.forms import LoginRegistrationForm, RegisterForm
+from account.forms import LoginForm, RegisterForm
+from account.models import User
 
-
+# my sign in
 def signup(request):
     form = RegisterForm()
     if request.method == 'POST':
@@ -11,26 +12,34 @@ def signup(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            return redirect('account:login')
+            login(request, user)
+
+            return redirect('money:income_list')
 
     return render(request, 'accounts/sign_in.html', context={'form': form})
 
 
+#  my login view
+
+
 def login_view(request):
-    form = LoginRegistrationForm()
     if request.method == 'POST':
         print("post boldi ")
-        form = LoginRegistrationForm(request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            print("form is valid")
-            user = authenticate(
-                user=form.cleaned_data.get('user'),
-                password=form.cleaned_data.get('password'),
-            )
-            print(user)
-            if user is not None:
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = User.objects.filter(username=username).first()
+            if user and user.check_password(password):
                 login(request, user)
                 return redirect('money:income_list')
-            form.add_error('password', 'Parol yoki username noto\'g\'ri !')
+            form.add_error(None, 'Parol yoki username noto\'g\'ri !')
+            return render(request, 'accounts/login.html', context={'form': form})
 
+    form = LoginForm()
     return render(request, 'accounts/login.html', context={'form': form})
+
+#  logout
+def logout_view(request):
+    logout(request)
+    return redirect('account:login')

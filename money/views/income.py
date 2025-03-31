@@ -13,6 +13,7 @@ from django.core.paginator import Paginator
 def income_list_view(request):
     incomes = Income.objects.all().filter(user_id=request.user.id)
     q = request.GET.get('q', "")
+    print(q, "my q")
 
     if q:
         incomes = Income.objects.filter(
