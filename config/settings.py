@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from django.utils.translation import gettext_lazy as _
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'shell_plus',
     'django_extensions',
     'rosetta',
+
     #      my apps
     'money',
     'account',
@@ -119,17 +119,10 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
-LANGUAGES = [
-    ('en', _('English')),
-    ('uz', _('Uzbek')),
-    ('ru', _('Russian')),
-]
 
 USE_TZ = False
 
-LOCALE_PATHS = (
-    BASE_DIR / 'locale',
-)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

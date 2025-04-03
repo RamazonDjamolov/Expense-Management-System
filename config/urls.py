@@ -22,14 +22,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
-    path('rosetta/', include('rosetta.urls')),
-    path('i18/', include('django.conf.urls.i18n')),
     path('', include('money.urls')),
-
-)
+]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

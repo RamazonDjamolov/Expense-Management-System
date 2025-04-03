@@ -1,13 +1,9 @@
-
-
-
-{% load i18n static %}
 <!DOCTYPE html>
-<html lang="{{ request.LANGUAGE_CODE }}">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% trans "Finance Manager" %}{% endblock %}</title>
+    <title>{% block title %}Finance Manager{% endblock %}</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +46,7 @@
 <nav class="navbar navbar-expand-lg navbar-custom navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'money:income_list' %}">
-            <i class="fas fa-wallet me-2"></i>{% trans "Finance App" %}
+            <i class="fas fa-wallet me-2"></i>Finance App
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -62,12 +58,12 @@
                 <!-- Categories Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-tags me-1"></i>{% trans "Categories" %}
+                        <i class="fas fa-tags me-1"></i>Categories
                     </a>
                     <ul class="dropdown-menu">
 
                         <li><a class="dropdown-item" href="{% url 'money:category_create' %}">
-                            <i class="fas fa-plus-circle me-2"></i>{% trans "Create Category" %}
+                            <i class="fas fa-plus-circle me-2"></i>Create Category
                         </a></li>
                     </ul>
                 </li>
@@ -75,14 +71,15 @@
                 <!-- Incomes Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-money-bill-wave me-1"></i>{% trans "Incomes" %}
+                        <i class="fas fa-money-bill-wave me-1"></i>Incomes
+
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'money:income_list' %}">
-                            <i class="fas fa-list me-2"></i>{% trans "Income List" %}
+                            <i class="fas fa-list me-2"></i>Income List
                         </a></li>
                         <li><a class="dropdown-item" href="{% url 'money:income_create' %}">
-                            <i class="fas fa-plus-circle me-2"></i>{% trans "Create Income" %}
+                            <i class="fas fa-plus-circle me-2"></i>Create Income
                         </a></li>
                     </ul>
                 </li>
@@ -90,14 +87,14 @@
                 <!-- Expenses Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-coins me-1"></i>{% trans "Expenses" %}
+                        <i class="fas fa-coins me-1"></i>Expenses
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'money:expense_list' %}">
-                            <i class="fas fa-list me-2"></i>{% trans "Expense List" %}
+                            <i class="fas fa-list me-2"></i>Expense List
                         </a></li>
                         <li><a class="dropdown-item" href="{% url 'money:expense_create' %}">
-                            <i class="fas fa-plus-circle me-2"></i>{% trans "Create Expense" %}
+                            <i class="fas fa-plus-circle me-2"></i>Create Expense
                         </a></li>
                     </ul>
                 </li>
@@ -122,25 +119,25 @@
                 </form>
 
                 <!-- Language Switcher -->
-                <form action="{% url 'set_language' %}" method="post">
+                <form action="" method="post">
                     {% csrf_token %}
                     <div class="input-group">
                         <select name="language" class="form-select language-switcher text-white"
                                 onchange="this.form.submit()">
-                            <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}
+                            <option value="en"
                                     class="language-switcher"
 
                             >
                                 English
 
                             </option>
-                            <option value="uz" {% if request.LANGUAGE_CODE == 'uz' %}selected{% endif %}
+                            <option value="uz"
                                     class="language-switcher"
 
                             >
                                 O'zbek
                             </option>
-                            <option value="ru" {% if request.LANGUAGE_CODE == 'ru' %}selected{% endif %}
+                            <option value="ru"
                                     class="language-switcher"
 
                             >
@@ -159,14 +156,14 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="#">
-                        <i class="fas fa-cog me-2"></i>{% trans "Sozlamalar" %}
+                        <i class="fas fa-cog me-2"></i>Sozlamalar
                     </a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
                         <a class="dropdown-item text-danger" href="{% url 'account:logout' %}">
-                            <i class="fas fa-sign-out-alt me-2"></i>{% trans "Chiqish" %}
+                            <i class="fas fa-sign-out-alt me-2"></i>Chiqish
                         </a>
                     </li>
                 </ul>
@@ -180,7 +177,7 @@
 <main class="container flex-grow-1 mt-4">
     {% block content %}
         <div class="text-center">
-            <p class="lead">{% trans "Welcome" %}, {{ request.user }}</p>
+            <p class="lead">Welcome, {{ request.user }}</p>
         </div>
     {% endblock %}
 </main>
@@ -188,7 +185,7 @@
 <!-- Footer -->
 <footer class="mt-auto py-3 bg-light">
     <div class="container text-center">
-        <span class="text-muted">© 2024 Finance App. {% trans "All rights reserved" %}.</span>
+        <span class="text-muted">© 2024 Finance App. All rights reserved.</span>
     </div>
 </footer>
 
