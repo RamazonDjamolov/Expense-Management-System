@@ -1,5 +1,3 @@
-from sqlite3 import IntegrityError
-
 from django.contrib.auth import login
 from django.shortcuts import redirect
 
@@ -38,15 +36,16 @@ def google_callback(request):
                                       headers={"Authorization": f"Bearer {access_token}"})
 
     user_info = user_info_response.json()
-
-    user, _ = User.objects.get_or_create(google_id=user_info.get("id"),
-                                         username=user_info.get("email"),
-                                         email=user_info.get("email"),
-                                         image=user_info.get("picture"),
-                                         first_name=user_info.get("given_name"),
-                                         last_name=user_info.get("family_name"),
-                                         )
-
+    try:
+        user = User.objects.get(email=user_info["email"])
+    except Exception:
+        user = User.objects.create(google_id=user_info.get("id"),
+                                   username=user_info.get("email"),
+                                   email=user_info.get("email"),
+                                   image=user_info.get("picture"),
+                                   first_name=user_info.get("given_name"),
+                                   last_name=user_info.get("family_name"),
+                                   )
 
     login(request, user)
 
