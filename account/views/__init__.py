@@ -1,1 +1,1 @@
-from account.views.auth import signup, login_view, logout_view
+from account.views.auth import LoginView ,LogoutView, RegisterView

@@ -1,6 +1,7 @@
 import email
 
 from django import forms
+from django.core.exceptions import ValidationError
 
 from account.models import User
 
@@ -10,19 +11,27 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password',)
+        fields = ('email', 'password',)
 
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'password': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+        def clean(self):
+            cleaned_data = super().clean()
+            password = cleaned_data['password']
+            re_password = cleaned_data['re_password']
+            if password != re_password:
+                raise ValidationError("password not equeal re_password")
+            cleaned_data.pop('re_password')
+            return cleaned_data
+
+    # def save(self, commit=True):
+    #     # user = User.objects.create_user(**self.cleaned_data)
+    #     return user
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-
-
