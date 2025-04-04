@@ -23,13 +23,9 @@ class RegisterForm(forms.ModelForm):
             password = cleaned_data['password']
             re_password = cleaned_data['re_password']
             if password != re_password:
-                raise ValidationError("password not equeal re_password")
+                raise ValidationError("password not equal  re_password")
             cleaned_data.pop('re_password')
             return cleaned_data
-
-    # def save(self, commit=True):
-    #     # user = User.objects.create_user(**self.cleaned_data)
-    #     return user
 
 
 class LoginForm(forms.Form):

@@ -1,14 +1,18 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import path
-from .views import LoginView, LogoutView, RegisterView
+
+from account.views import RegisterView, LogoutView, LoginView, GoogleRegisterView, GoogleCallbackView
 
 app_name = 'account'
 
 urlpatterns = [
-    path('sign_in/', RegisterView.as_view(), name='sign_in'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout', LogoutView.as_view(), name='logout'),
-    # google
+    path('Logout/', LogoutView.as_view(), name='logout'),
 
+    # google
+    path('google_register/', GoogleRegisterView.as_view(), name='google_register'),
+    path('google/callback/', GoogleCallbackView.as_view(), name='google_callback'),
 
 ]
