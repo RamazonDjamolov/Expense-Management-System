@@ -122,8 +122,6 @@ USE_I18N = True
 
 USE_TZ = False
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -153,3 +151,12 @@ GOOGLE_REDIRECT_URI = config('GOOGLE_REDIRECT_URI')
 GOOGLE_AUTH_URL = config('GOOGLE_AUTH_URL')
 GOOGLE_USER_INFO_URL = config('GOOGLE_USER_INFO_URL')
 GOOGLE_TOKEN_URL = config('GOOGLE_TOKEN_URL')
+
+# email
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "djamolovramazon90@gmail.com"
+EMAIL_HOST_PASSWORD = "yvxg nhde kjom mmzc"

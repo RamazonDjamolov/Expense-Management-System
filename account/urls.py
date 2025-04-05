@@ -2,7 +2,8 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import path
 
-from account.views import RegisterView, LogoutView, LoginView, GoogleRegisterView, GoogleCallbackView
+from account.views import RegisterView, LogoutView, LoginView, GoogleRegisterView, GoogleCallbackView, \
+    ForgotPasswordView
 
 app_name = 'account'
 
@@ -14,5 +15,8 @@ urlpatterns = [
     # google
     path('google_register/', GoogleRegisterView.as_view(), name='google_register'),
     path('google/callback/', GoogleCallbackView.as_view(), name='google_callback'),
+
+#     forgot password
+    path('forgot_password/', ForgotPasswordView.as_view(), name='forgot_password'),
 
 ]
