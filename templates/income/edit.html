@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 
 {% block content %}
     <form action="{% url 'money:income_update' income.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class=" btn btn-warning"> edit</button>
+        <button type="submit" class=" btn btn-warning"> {% trans 'edit' %} </button>
     </form>
 {% endblock %}

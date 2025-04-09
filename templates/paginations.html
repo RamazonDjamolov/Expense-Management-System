@@ -1,14 +1,15 @@
+{% load i18n %}
 <nav aria-label="..." class="mt-2">
     <ul class="pagination">
 
 
         {% if not page.has_previous %}
             <li class="page-item disabled">
-                <a class="page-link">Previous</a>
+                <a class="page-link">{% trans 'Income List' %}</a>
             </li>
         {% else %}
             <li class="page-item">
-                <a href="?page={{ page.previous_page_number }}&q={{ q }}" class="page-link"> Previous</a>
+                <a href="?page={{ page.previous_page_number }}&q={{ q }}" class="page-link"> {% trans 'Previous' %} </a>
             </li>
 
         {% endif %}
@@ -36,13 +37,13 @@
 
         {% if not page.has_next %}
             <li class="page-item disabled">
-                <a class="page-link" href="#">Next</a>
+                <a class="page-link" href="#"> {% trans 'Next' %}</a>
             </li>
 
         {% else %}
 
             <li class="page-item">
-                <a class="page-link" href="?page={{ page.next_page_number }}&q={{ q }}">Next</a>
+                <a class="page-link" href="?page={{ page.next_page_number }}&q={{ q }}">{% trans 'Next' %}</a>
             </li>
 
 

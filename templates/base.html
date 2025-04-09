@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +47,7 @@
 <nav class="navbar navbar-expand-lg navbar-custom navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'money:income_list' %}">
-            <i class="fas fa-wallet me-2"></i>Finance App
+            <i class="fas fa-wallet me-2"></i> {% trans 'Finance App' %}
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -58,12 +59,12 @@
                 <!-- Categories Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-tags me-1"></i>Categories
+                        <i class="fas fa-tags me-1"></i> {% trans 'Categories' %}
                     </a>
                     <ul class="dropdown-menu">
 
                         <li><a class="dropdown-item" href="{% url 'money:category_create' %}">
-                            <i class="fas fa-plus-circle me-2"></i>Create Category
+                            <i class="fas fa-plus-circle me-2"></i> {% trans 'Create Category' %}
                         </a></li>
                     </ul>
                 </li>
@@ -71,15 +72,15 @@
                 <!-- Incomes Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-money-bill-wave me-1"></i>Incomes
+                        <i class="fas fa-money-bill-wave me-1"></i>{% trans 'Create Category' %}
 
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'money:income_list' %}">
-                            <i class="fas fa-list me-2"></i>Income List
+                            <i class="fas fa-list me-2"></i> {% trans 'Income List' %}
                         </a></li>
                         <li><a class="dropdown-item" href="{% url 'money:income_create' %}">
-                            <i class="fas fa-plus-circle me-2"></i>Create Income
+                            <i class="fas fa-plus-circle me-2"></i> {% trans 'Income List' %}
                         </a></li>
                     </ul>
                 </li>
@@ -87,14 +88,14 @@
                 <!-- Expenses Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-coins me-1"></i>Expenses
+                        <i class="fas fa-coins me-1"></i>{% trans 'Expenses' %}
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'money:expense_list' %}">
-                            <i class="fas fa-list me-2"></i>Expense List
+                            <i class="fas fa-list me-2"></i> {% trans 'Expense List' %}
                         </a></li>
                         <li><a class="dropdown-item" href="{% url 'money:expense_create' %}">
-                            <i class="fas fa-plus-circle me-2"></i>Create Expense
+                            <i class="fas fa-plus-circle me-2"></i> {% trans 'Create Expense' %}
                         </a></li>
                     </ul>
                 </li>
@@ -103,7 +104,7 @@
             <!-- Right Section -->
             <div class="d-flex align-items-center gap-3">
                 <!-- Search Form -->
-                <form class="d-flex search-box"
+                <form class="d-flex search-box me-3"
                       role="search" method="get">
                     <div class="input-group">
                         <input class="form-control"
@@ -116,7 +117,7 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                </form>
+                </form >
 
                 <!-- Language Switcher -->
                 {#                <form action="" method="post">#}
@@ -147,6 +148,28 @@
                 {#                    </div>#}
                 {#                </form>#}
             </div>
+
+            {% comment %}  LANGUAGE {% endcomment %}
+            <form action="{% url 'set_language' %}" method="post">
+
+                {% csrf_token %}
+
+                <select name="language" class="form-select language-switcher text-white"
+
+                        onchange="this.form.submit()">
+
+
+                    <option value="en"{% if request.LANGUAGE_CODE  == "en"%} selected {% endif %} class="language-switcher" >English</option>
+
+                    <option value="uz" {% if request.LANGUAGE_CODE  == "uz"%} selected {% endif %} class="language-switcher">O‘zbekcha</option>
+
+                    <option value="ru"  {% if request.LANGUAGE_CODE  == "ru"%} selected {% endif %} class="language-switcher">Русский</option>
+
+                </select>
+
+{#                <button type="submit">O‘zgartirish</button>#}
+
+            </form>
 
 
             <div class="dropdown ms-3">
