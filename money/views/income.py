@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 
 
 # Create your views here.
-@permission_required('money.income_client', raise_exception=True)
+# @permission_required('money.income_client', raise_exception=True)
 @login_required(login_url='account:login')
 def income_list_view(request):
     incomes = Income.objects.all().filter(user_id=request.user.id)
@@ -31,7 +31,7 @@ def income_list_view(request):
     })
 
 
-@permission_required('money.income_client', raise_exception=True)
+# @permission_required('money.income_client', raise_exception=True)
 def income_create_view(request):
     if request.method == "POST":
         form = IncomeCreateForm(request.POST)
@@ -49,7 +49,7 @@ def income_create_view(request):
     })
 
 
-@permission_required('money.income_client', raise_exception=True)
+# @permission_required('money.income_client', raise_exception=True)
 def Income_update(request, income_id):
     if request.method == "POST":
         income = Income.objects.get(id=income_id)
@@ -70,7 +70,7 @@ def Income_update(request, income_id):
     })
 
 
-@permission_required('money.income_client', raise_exception=True)
+# @permission_required('money.income_client', raise_exception=True)
 def Income_delete(request, income_id):
     income = Income.objects.get(id=income_id).delete()
     return redirect('money:income_list')

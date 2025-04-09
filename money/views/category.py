@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect
 from money.forms import CategoryCreateForm
 from money.models import Category
 
-@permission_required('money.category_client', raise_exception=True )
+
+# @permission_required('money.category_client', raise_exception=True )
 def CategoryCreate(request):
     category = Category.objects.all().filter(user_id=request.user.id)
     if request.method == 'POST':
@@ -26,13 +27,15 @@ def CategoryCreate(request):
 
     })
 
-@permission_required('money.category_client', raise_exception=True )
+
+# @permission_required('money.category_client', raise_exception=True )
 def Category_delete(request, category_id):
     category = Category.objects.filter(user_id=request.user.id, id=category_id).first()
     category.delete()
     return redirect("money:category_create")
 
-@permission_required('money.category_client', raise_exception=True )
+
+# @permission_required('money.category_client', raise_exception=True )
 def Category_edit(request, category_id):
     category = Category.objects.filter(user_id=request.user.id, id=category_id).first()
     if request.method == 'POST':

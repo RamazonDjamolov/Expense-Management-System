@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+    <style>
+        .profile-header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+
+        .profile-info {
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% for p in profile %}
+
+
+        <div class="profile-header">
+            <h1>image</h1>
+                        {% if p.image.url %}
+                            <img src="{{ p.image.url }}" alt="Profil Rasmi" class="rounded-circle  border border-primary"
+                                 style="width: 300px; height: 300px">
+                            {% else %}
+                            <h1>You Have Not Profile Image </h1>
+                        {% endif %}
+
+
+        </div>
+
+        <div class="profile-info">
+
+            <ul class="list-group">
+                <li class="list-group-item">Telefon: {{ p.phone_number }}</li>
+
+            </ul>
+        </div>
+
+        <div class="profile-bio">
+            <h3>Bio</h3>
+            <p>{{ p.bio }}</p>
+        </div>
+
+
+        <a href="{% url 'account:profile_edit' p.id %}" class="btn btn-dark"> edit</a>
+    {% endfor %}
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

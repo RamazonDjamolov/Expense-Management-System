@@ -2,7 +2,8 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import path
 
-from account.views import RegisterView, LogoutView, LoginView, GoogleRegisterView, GoogleCallbackView, AdminView
+from account.views import RegisterView, LogoutView, LoginView, GoogleRegisterView, GoogleCallbackView, AdminView, \
+    ProfileDetailView, EditProfileView
 from account.views.forgot_password import ForgotPasswordView, ResetPasswordView
 
 app_name = 'account'
@@ -23,5 +24,10 @@ urlpatterns = [
     #     for admin
 
     path('admin/', AdminView.as_view(), name='admin'),
+
+    #     profile
+
+    path('profile/', ProfileDetailView.as_view(), name='profile'),
+    path('profile/<int:profile_id>/', EditProfileView.as_view(), name='profile_edit'),
 
 ]

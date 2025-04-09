@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <img src=" " alt="">
+
+
+    <p>{{ profile.phone_number }}</p>
+
+
+
+    <div class="container">
+
+     <form action="{% url 'account:profile_edit' profile.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            create profile
+        </button>
+
+    </form>
+
+
+{% endblock %}

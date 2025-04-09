@@ -119,33 +119,33 @@
                 </form>
 
                 <!-- Language Switcher -->
-{#                <form action="" method="post">#}
-{#                    {% csrf_token %}#}
-{#                    <div class="input-group">#}
-{#                        <select name="language" class="form-select language-switcher text-white"#}
-{#                                onchange="this.form.submit()">#}
-{#                            <option value="en"#}
-{#                                    class="language-switcher"#}
-{##}
-{#                            >#}
-{#                                English#}
-{##}
-{#                            </option>#}
-{#                            <option value="uz"#}
-{#                                    class="language-switcher"#}
-{##}
-{#                            >#}
-{#                                O'zbek#}
-{#                            </option>#}
-{#                            <option value="ru"#}
-{#                                    class="language-switcher"#}
-{##}
-{#                            >#}
-{#                                Русский#}
-{#                            </option>#}
-{#                        </select>#}
-{#                    </div>#}
-{#                </form>#}
+                {#                <form action="" method="post">#}
+                {#                    {% csrf_token %}#}
+                {#                    <div class="input-group">#}
+                {#                        <select name="language" class="form-select language-switcher text-white"#}
+                {#                                onchange="this.form.submit()">#}
+                {#                            <option value="en"#}
+                {#                                    class="language-switcher"#}
+                {##}
+                {#                            >#}
+                {#                                English#}
+                {##}
+                {#                            </option>#}
+                {#                            <option value="uz"#}
+                {#                                    class="language-switcher"#}
+                {##}
+                {#                            >#}
+                {#                                O'zbek#}
+                {#                            </option>#}
+                {#                            <option value="ru"#}
+                {#                                    class="language-switcher"#}
+                {##}
+                {#                            >#}
+                {#                                Русский#}
+                {#                            </option>#}
+                {#                        </select>#}
+                {#                    </div>#}
+                {#                </form>#}
             </div>
 
 
@@ -155,7 +155,7 @@
                     <i class="fas fa-user-circle me-2"></i>{{ request.user.email|default:request.user.username }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">
+                    <li><a class="dropdown-item" href="{% url 'account:profile' %}">
                         <i class="fas fa-cog me-2"></i>Sozlamalar
                     </a></li>
                     <li>

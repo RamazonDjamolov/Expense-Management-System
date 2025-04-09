@@ -6,7 +6,7 @@ from money.models import Expense
 from django.shortcuts import render, redirect
 
 
-@permission_required('money.expense_client', raise_exception=True)
+# @permission_required('money.expense_client', raise_exception=True)
 @login_required(login_url='account:login')
 def create_expense(request):
     if request.method == "POST":
@@ -26,7 +26,7 @@ def create_expense(request):
     })
 
 
-@permission_required('money.expense_client', raise_exception=True)
+# @permission_required('money.expense_client', raise_exception=True)
 def list_expenses(request):
     expense = Expense.objects.all().filter(user_id=request.user)
     return render(request, template_name='expense/list.html', context={

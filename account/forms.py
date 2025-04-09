@@ -4,7 +4,7 @@ from django.utils import timezone
 from django import forms
 from django.core.exceptions import ValidationError
 
-from account.models import User, Code
+from account.models import User, Code, Profile
 
 
 class RegisterForm(forms.ModelForm):
@@ -72,3 +72,9 @@ class RestorePasswordForm(forms.Form):
         user = User.objects.filter(email=self.cleaned_data.get('email')).first()
         user.set_password(self.cleaned_data.get('password'))
         user.save()
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image', 'bio', 'phone_number']
