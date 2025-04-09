@@ -26,7 +26,7 @@
                         <div class="text-center mb-3">
                             <p class="text-muted">Or sign in with</p>
                             <div class="d-flex justify-content-center gap-2">
-                                <a href="{% url 'account:google_login' %}" class="btn btn-outline-danger">
+                                <a href="{% url 'account:google_register' %}" class="btn btn-outline-danger">
                                     <i class="fab fa-google"></i> Google
                                 </a>
                                 <a href="#" class="btn btn-outline-dark">
@@ -37,7 +37,7 @@
 
 
                         <div class="text-center">
-                            <a href="#" class=" link-underline link-underline-opacity-0">Forgot Password ?</a>
+                            <a href="{% url 'account:forgot_password' %}" class=" link-underline link-underline-opacity-0">Forgot Password ?</a>
                         </div>
                     </div>
                 </div>

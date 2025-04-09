@@ -1,2 +1,6 @@
-from account.views.google_register import google_login, google_callback
-from account.views.auth import signup, login_view, logout_view
+from account.views.auth import RegisterView, LogoutView, LoginView
+from account.views.google_register import GoogleRegisterView, GoogleCallbackView
+
+from account.views.admin_view import AdminView
+
+from account.views.profile import ProfileDetailView, EditProfileView

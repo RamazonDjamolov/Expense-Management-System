@@ -37,9 +37,9 @@
         <!-- Sarlavha -->
         <div class="header p-4 mb-4">
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="mb-0"><i class="fas fa-coins me-2"></i>Story Incomes</h1>
+                <h1 class="mb-0"><i class="fas fa-coins me-2"></i> {% trans ' Story Incomes' %}</h1>
                 <a href="{% url 'money:income_create' %}" class="btn btn-light">
-                    <i class="fas fa-plus-circle me-2"></i>Create New Income
+                    <i class="fas fa-plus-circle me-2"></i> {% trans 'Create New Income' %}
                 </a>
             </div>
         </div>
@@ -90,7 +90,7 @@
                             <tr>
                                 <td colspan="5" class="text-center py-4 text-muted">
                                     <i class="fas fa-info-circle me-2"></i>
-                                    {% trans "You have not Expense" %}
+                                    You have not Expense
                                 </td>
                             </tr>
                         {% endfor %}

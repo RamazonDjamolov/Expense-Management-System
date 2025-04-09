@@ -20,15 +20,14 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
-    path('rosetta/', include('rosetta.urls')),
-    path('i18/', include('django.conf.urls.i18n')),
     path('', include('money.urls')),
-
+    path('i18n/', include('django.conf.urls.i18n')),
+    re_path(r'^rosetta/', include('rosetta.urls'))
 )
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

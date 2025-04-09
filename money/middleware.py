@@ -1,39 +1,28 @@
-# from django.http import HttpResponseForbidden, HttpResponse
-# from django.utils import timezone
-#
-#
-# class LoggIPWriterMiddleware:
-#     def __init__(self, get_response):
-#         self.get_response = get_response
-#
-#     def __call__(self, request, *args, **kwargs):
-#         now = timezone.now()
-#
-#         if now.hour < 8 or now.hour > 18:
-#             return HttpResponse('Saytimiz 8:00 dan 18:00 gacha ishlatyd')
-#         return self.get_response(request, *args, **kwargs)
-#
-#
-# class BlockIpMiddleware:
-#     requests = {}
-#     def __init__(self, get_response):
-#         self.get_response = get_response
-#
-#     def __call__(self, request):
-#         ip = request.META.get('REMOTE_ADDR', 'NOMALUM IP')
-#         now = timezone.now()
-#
-#         if ip not in self.requests:
-#             self.requests[ip] = []
-#
-#         for i in self.requests[ip]:
-#             pass
-#     #
-#     # if not request.headers.get([ip]):
-#     #
-#     #
-#     # for i in request[ip]:
-#     #     if now - i > 10:
-#     #         request[ip].remove(i)
-#     # if len(request[ip]) > 5:
-#     #     return HttpResponse('Siz uchhun sayt blocklangan ')
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.utils import timezone
+
+from django.utils.deprecation import MiddlewareMixin
+
+
+class AutoLogoutMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        user = getattr(request, 'user', None)
+
+        if user and user.is_authenticated:
+            last_login = request.user.last_login
+            if last_login:
+                current_time = timezone.now()
+                seconds_pas = (current_time - last_login).total_seconds()
+                if seconds_pas > 10:
+                    logout(request)
+                    request.session.flush()
+
+                    return redirect('account:login')
+
+        response = self.get_response(request)
+        return response
+

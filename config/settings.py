@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from django.utils.translation import gettext_lazy as _
 from decouple import config
+
+
+from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'shell_plus',
     'django_extensions',
     'rosetta',
+
     #      my apps
     'money',
     'account',
@@ -56,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'money.middleware.AutoLogoutMiddleware',
 
     # 'money.middleware.LoggIPWriterMiddleware',
     # 'money.middleware.BlockIpMiddleware',
@@ -119,17 +124,22 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
-LANGUAGES = [
-    ('en', _('English')),
-    ('uz', _('Uzbek')),
-    ('ru', _('Russian')),
-]
 
 USE_TZ = False
 
-LOCALE_PATHS = (
+LANGUAGES = [
+
+    ('en', 'English'),
+
+    ('uz', 'Uzbek'),
+
+     ('ru', 'Russian'),
+
+]
+
+LOCALE_PATHS = [
     BASE_DIR / 'locale',
-)
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -160,3 +170,12 @@ GOOGLE_REDIRECT_URI = config('GOOGLE_REDIRECT_URI')
 GOOGLE_AUTH_URL = config('GOOGLE_AUTH_URL')
 GOOGLE_USER_INFO_URL = config('GOOGLE_USER_INFO_URL')
 GOOGLE_TOKEN_URL = config('GOOGLE_TOKEN_URL')
+
+# email
+
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

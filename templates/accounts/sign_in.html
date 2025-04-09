@@ -12,7 +12,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4">Sign In</h3>
-                        <form method="post" action="{% url 'account:sign_in' %}">
+                        <form method="post" action="{% url 'account:register' %}">
                             {% csrf_token %}
 
                             {{ form }}
@@ -26,7 +26,7 @@
                         <div class="text-center mb-3">
                             <p class="text-muted">Or sign in with</p>
                             <div class="d-flex justify-content-center gap-2">
-                                <a href="{% url 'account:google_login' %}" class="btn btn-outline-danger">
+                                <a href="{% url 'account:google_register' %}" class="btn btn-outline-danger">
                                     <i class="fab fa-google"></i> Google
                                 </a>
                                 <a href="#" class="btn btn-outline-dark">
