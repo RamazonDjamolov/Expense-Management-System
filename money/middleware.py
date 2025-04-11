@@ -1,8 +1,7 @@
 from django.contrib.auth import logout
-from django.shortcuts import redirect
-from django.utils import timezone
-
 from django.utils.deprecation import MiddlewareMixin
+from django.utils.timezone import now
+from account.models import User
 
 
 class AutoLogoutMiddleware:
@@ -13,16 +12,17 @@ class AutoLogoutMiddleware:
         user = getattr(request, 'user', None)
 
         if user and user.is_authenticated:
-            last_login = request.user.last_login
-            if last_login:
-                current_time = timezone.now()
-                seconds_pas = (current_time - last_login).total_seconds()
-                if seconds_pas > 10:
+            last_active = user.last_active
+            current_time = now()
+
+            if last_active:
+                seconds_passed = (current_time - last_active).total_seconds()
+                if seconds_passed > 604800:  # 7 kun kirmasa
                     logout(request)
                     request.session.flush()
 
-                    return redirect('account:login')
+
+            User.objects.filter(id=user.id).update(last_active=current_time)
 
         response = self.get_response(request)
         return response
-

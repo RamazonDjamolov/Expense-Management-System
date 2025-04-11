@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.timezone import datetime, timedelta
 from django.utils.translation import gettext_lazy as _
 
+
 def time_default():
     return datetime.now() + timedelta(seconds=60)
 
@@ -11,6 +12,7 @@ def time_default():
 class User(AbstractUser):
     email = models.EmailField(unique=True, help_text='Email address')
     username = models.CharField(blank=True, null=True, max_length=255, help_text='username')
+    last_active = models.DateTimeField(null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -25,9 +27,10 @@ class Code(models.Model):
 #  profile
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile' , help_text=_('user'))
-    image = models.ImageField(upload_to='profile_images', null=True, blank=True , default='profile_images/default.jpg', help_text=_('image') )
-    bio = models.CharField(blank=True, null=True, max_length=255 , help_text=_('bio'), )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', help_text=_('user'))
+    image = models.ImageField(upload_to='profile_images', null=True, blank=True, default='profile_images/default.jpg',
+                              help_text=_('image'))
+    bio = models.CharField(blank=True, null=True, max_length=255, help_text=_('bio'), )
     phone_number = models.CharField(blank=True, null=True, max_length=255, help_text=_('phone number'))
 
     class Meta:
