@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from money.models import Income, Expense, Category
+from money.models import Income, Expense, Category, Files
 
 
 class IncomeCreateForm(forms.ModelForm):
@@ -37,4 +37,13 @@ class CategoryCreateForm(forms.ModelForm):
         fields = ['name']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class FilesCreateForm(forms.ModelForm):
+    class Meta:
+        model = Files
+        fields = ['file']
+        widgets = {
+            'file': forms.FileInput(attrs={'class': 'form-control'}),
         }

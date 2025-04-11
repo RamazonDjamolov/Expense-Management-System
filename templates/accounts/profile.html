@@ -26,12 +26,12 @@
 
         <div class="profile-header">
             <h1>image</h1>
-                        {% if p.image.url %}
-                            <img src="{{ p.image.url }}" alt="Profil Rasmi" class="rounded-circle  border border-primary"
-                                 style="width: 300px; height: 300px">
-                            {% else %}
-                            <h1>You Have Not Profile Image </h1>
-                        {% endif %}
+            {% if p.image.url %}
+                <img src="{{ p.image.url }}" alt="Profil Rasmi" class="rounded-circle  border border-primary"
+                     style="width: 300px; height: 300px">
+            {% else %}
+                <h1>You Have Not Profile Image </h1>
+            {% endif %}
 
 
         </div>
@@ -56,7 +56,7 @@
 
 
 
-    </div>
+    <a href="{% url 'money:create_files' %}" class="btn btn-outline-dark"> Upload files</a>
 
 
 

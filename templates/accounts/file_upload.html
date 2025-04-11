@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <form action="{% url 'money:create_files' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">
+                upload files
+            </button>
+
+        </form>
+    </div>
+
+
+{% endblock %}
