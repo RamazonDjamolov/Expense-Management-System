@@ -43,7 +43,8 @@ class CategoryCreateForm(forms.ModelForm):
 class FilesCreateForm(forms.ModelForm):
     class Meta:
         model = Files
-        fields = ['file']
+        fields = ['name', 'file']
         widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
             'file': forms.FileInput(attrs={'class': 'form-control'}),
         }

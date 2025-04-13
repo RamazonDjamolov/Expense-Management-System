@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <form action="{% url 'money:update_file' file.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+
+            {% if file.file %}
+                <p> Your file: <a href="{{ file.file.url }}" target="_blank">{{ file.file.name }}</a></p>
+            {% endif %}
+
+            <button type="submit">
+                update files
+            </button>
+
+        </form>
+    </div>
+
+
+{% endblock %}

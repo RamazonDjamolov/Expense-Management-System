@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import path
 from .views import income_list_view, income_create_view, Income_update, create_expense, list_expenses, CategoryCreate, \
-    Income_delete, Category_delete, Category_edit, CreateFileView, ListFileView
+    Income_delete, Category_delete, Category_edit, UploadFilesView, ListFilesView, UpdateFileView, DeleteFileView
 
 app_name = 'money'
 
@@ -26,9 +26,9 @@ urlpatterns = [
     path('category_edit/<int:category_id>/', Category_edit, name='category_edit'),
 
     #     files
-    path('create_files/', CreateFileView.as_view(), name='create_files'),
-    path('list_files/', ListFileView.as_view(), name='list_file'),
-
-    # path('update_file<int:file_id>/', list_expenses, name='list'),
+    path('upload_file/', UploadFilesView.as_view(), name='upload_file'),
+    path('list_file/', ListFilesView.as_view(), name='list_file'),
+    path('update_file/<int:file_id>/', UpdateFileView.as_view(), name='update_file'),
+    path('delete_file/<int:file_id>/', DeleteFileView.as_view(), name='delete_file'),
 
 ]

@@ -6,4 +6,4 @@ class MoneyConfig(AppConfig):
     name = 'money'
 
     def ready(self):
-        from .signals import default_user_post_save
+        from .signals import send_upload_notification
