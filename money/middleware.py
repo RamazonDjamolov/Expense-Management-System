@@ -36,13 +36,14 @@ class FilesMiddleware:
 
     def __call__(self, request):
         user = getattr(request, 'user', None)
-        print(request.path, "my path")
         print()
         if request.path.endswith('/upload_file/') and user.is_authenticated:
+            print("1212")
             group = request.user.groups.first()
-            file_numer = Files.objects.filter(user=user).count()
-            print(file_numer)
-            if str(group) == 'client' and file_numer >= 5:
-                return HttpResponseForbidden(" limit 5 files for clients")
+            file_number = Files.objects.filter(user=user).count()
+            print(group, "my group ")
+            if str(group) == 'client' and file_number >= 5:
+                return HttpResponseForbidden("limit 5 files for clients")
+
         response = self.get_response(request)
         return response
