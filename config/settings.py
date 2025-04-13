@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'money.middleware.AutoLogoutMiddleware',
-
+    'money.middleware.FilesMiddleware',
 
     # 'money.middleware.LoggIPWriterMiddleware',
     # 'money.middleware.BlockIpMiddleware',

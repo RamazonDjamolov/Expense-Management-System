@@ -7,4 +7,4 @@ class AccountConfig(AppConfig):
 
 
     def ready(self):
-        from .signals import create_profile
+        from .signals import create_profile, add_group_to_user

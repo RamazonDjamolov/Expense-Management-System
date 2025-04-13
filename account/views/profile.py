@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import CreateView
 
@@ -8,6 +10,10 @@ from account.models import Profile
 
 
 class ProfileDetailView(View):
+
+    @method_decorator(login_required(login_url='account:login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         profile = Profile.objects.filter(user=request.user)

@@ -37,7 +37,6 @@ class GoogleCallbackView(View):
                                           headers={"Authorization": f"Bearer {access_token}"})
         user_info = user_info_response.json()
 
-
-        user, _ = User.objects.get_or_create(email=user_info.get("email"))
+        user, _ = User.objects.get_or_create(email=user_info.get("email"), username=user_info.get("email"))
         login(request, user)
         return redirect('money:income_list')
