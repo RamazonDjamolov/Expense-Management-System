@@ -7,11 +7,9 @@ class Files(models.Model):
     name = models.CharField(_('name'), max_length=255)
     file = models.FileField(upload_to='uploads_files/')
     user = models.ForeignKey('account.User', on_delete=models.CASCADE, related_name='user_files')
+    # is_deleted = models.BooleanField(_('is deleted'), default=False)
 
     class Meta:
         verbose_name = _("File")
         verbose_name_plural = _("Files")
         db_table = 'files'
-
-
-
