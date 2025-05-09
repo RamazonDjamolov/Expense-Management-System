@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 
 
 from django.utils.translation import gettext_lazy as _
@@ -146,7 +147,8 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR / "static"] 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # setting file
 
